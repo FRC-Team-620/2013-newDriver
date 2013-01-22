@@ -22,7 +22,7 @@ public class RobotTemplate extends SimpleRobot {
      * This function is called once each time the robot enters autonomous mode.
      */
     public void autonomous() {
-        
+        //I CAN EDIT NOW
     }
 
     /**
@@ -36,6 +36,6 @@ public class RobotTemplate extends SimpleRobot {
      * This function is called once each time the robot enters test mode.
      */
     public void test() {
-    
+    //Jesus be coming back here boy
     }
 }
