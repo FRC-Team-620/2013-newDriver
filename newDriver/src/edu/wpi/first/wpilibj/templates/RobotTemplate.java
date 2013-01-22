@@ -9,7 +9,7 @@ package edu.wpi.first.wpilibj.templates;
 
 
 import edu.wpi.first.wpilibj.SimpleRobot;
-
+import edu.wpi.first.wpilibj.RobotDrive;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the SimpleRobot
@@ -21,6 +21,7 @@ public class RobotTemplate extends SimpleRobot {
     /**
      * This function is called once each time the robot enters autonomous mode.
      */
+    RobotDrive robot = new RobotDrive(1, 2);
     public void autonomous() {
         //I CAN EDIT NOW
     }
