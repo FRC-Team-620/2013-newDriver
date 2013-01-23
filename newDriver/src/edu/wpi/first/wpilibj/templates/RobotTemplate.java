@@ -33,7 +33,7 @@ public class RobotTemplate extends SimpleRobot {
      * This function is called once each time the robot enters operator control.
      */
     public void operatorControl() {
-
+        robot.tankDrive(joy1,joy2);
     }
     
     /**
