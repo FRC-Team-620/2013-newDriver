@@ -11,6 +11,7 @@ package edu.wpi.first.wpilibj.templates;
 import edu.wpi.first.wpilibj.SimpleRobot;
 import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Timer;
 /**
  * The VM is configured to automatically run this class, and to call the
  * functions corresponding to each mode, as described in the SimpleRobot
@@ -32,14 +33,28 @@ public class RobotTemplate extends SimpleRobot {
     /**
      * This function is called once each time the robot enters operator control.
      */
-    public void operatorControl() {
-        robot.tankDrive(joy1,joy2);
+    public void setDeadZone(){
+        if (joy1.getY()<=.1){ 
+            // need to set this cause John couldnt find the api + joy1.setY()=0.0;
+            
+        }
+        if(joy2.getY()<=.1){
+            
+        }
     }
+    public void operatorControl() {
+        while(true && isOperatorControl() && isEnabled()){
+            robot.tankDrive(joy1.getY(),joy2.getY());
+            Timer.delay(.005);
+        }
+       }
+        
     
     /**
      * This function is called once each time the robot enters test mode.
      */
     public void test() {
     //Jesus be coming back here boy
+    ;
     }
 }
