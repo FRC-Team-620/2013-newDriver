@@ -33,38 +33,44 @@ public class RobotTemplate extends SimpleRobot {
     /**
      * This function is called once each time the robot enters operator control.
      */
-    public boolean setDeadZone(double deadzonevalue){
-        if (joy1.getY()<=deadzonevalue){ 
-            // need to set this cause John couldnt find the api + joy1.setY()=0.0;
+    public boolean setDeadZone(double deadzonevalue, Joystick joy){
+        if (Math.abs(joy.getY())<=deadzonevalue){ 
            return true;
         }
-        if(joy2.getY()>deadzonevalue){
+        else if(Math.abs(joy.getY())>deadzonevalue){
             return false;
         }
         return false;
     }
+    
     public void operatorControl() {
         while(true && isOperatorControl() && isEnabled()){
-           arcadeControl(0.01);
+           tankControl(0.4);
+          // System.out.println("LOL");
            Timer.delay(.005);
         }
     }
+    
     public void arcadeControl(double deadzone) {
-       if(setDeadZone(deadzone)) {
-           //TODO: set the motor values
-           
-       }
-       else {
-           //TODO: Set the motor values
-       }
+      
     }
+    
     public void tankControl(double deadzone) {
-       if(setDeadZone(deadzone)) {
-           //TODO: set the motor values
-       }
-       else {
-           //TODO: Set the motor values
-       }
+      double left=0,right =0;
+      System.out.println(joy1.getY() + " , " + joy2.getY());
+      if(setDeadZone(deadzone, joy1)) {
+          left = 0;
+      }
+      else {
+          left = joy1.getY();
+      }
+      if(setDeadZone(deadzone,joy2)) {
+          right = 0;
+      }
+      else {
+          right = joy2.getY();
+      }
+      robot.tankDrive(left, right);
     }
 
     
@@ -73,6 +79,5 @@ public class RobotTemplate extends SimpleRobot {
      */
     public void test() {
     //Jesus be coming back here boy
-    ;
     }
 }
