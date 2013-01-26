@@ -33,22 +33,40 @@ public class RobotTemplate extends SimpleRobot {
     /**
      * This function is called once each time the robot enters operator control.
      */
-    public void setDeadZone(){
-        if (joy1.getY()<=.1){ 
+    public boolean setDeadZone(double deadzonevalue){
+        if (joy1.getY()<=deadzonevalue){ 
             // need to set this cause John couldnt find the api + joy1.setY()=0.0;
-            
+           return true;
         }
-        if(joy2.getY()<=.1){
-            
+        if(joy2.getY()>deadzonevalue){
+            return false;
         }
+        return false;
     }
     public void operatorControl() {
         while(true && isOperatorControl() && isEnabled()){
-            robot.tankDrive(joy1.getY(),joy2.getY());
-            Timer.delay(.005);
+           arcadeControl(0.01);
+           Timer.delay(.005);
         }
+    }
+    public void arcadeControl(double deadzone) {
+       if(setDeadZone(deadzone)) {
+           //TODO: set the motor values
+           
        }
-        
+       else {
+           //TODO: Set the motor values
+       }
+    }
+    public void tankControl(double deadzone) {
+       if(setDeadZone(deadzone)) {
+           //TODO: set the motor values
+       }
+       else {
+           //TODO: Set the motor values
+       }
+    }
+
     
     /**
      * This function is called once each time the robot enters test mode.
